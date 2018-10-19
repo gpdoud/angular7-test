@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+header {
+  margin-bottom: 0.7em;
+}
+thead {
+  font-weight: bold;
+}
+.component {
+
+}
+.page-title {
+  font-size: 1.5em;
+  font-style: italic;
+}
