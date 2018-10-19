@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
+import { UserService } from '../user.service';
+import { User } from '../user.class';
+import { JsonResp } from '../../jsonresp.class';
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
@@ -7,9 +12,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserEditComponent implements OnInit {
 
-  constructor() { }
+  user: User;
+
+  save(): void {
+    console.log('Debug User B4 Change:', this.user);
+    this.usersvc.change(this.user)
+      .subscribe(resp => {
+        console.log('User Change:', resp);
+        if (resp.rc === 200) {
+          this.router.navigateByUrl('/users/list');
+        }
+      });
+  }
+
+  constructor(
+    private usersvc: UserService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    const id = this.route.snapshot.params.id;
+    this.usersvc.get(id)
+      .subscribe(resp => {
+        console.log('JsonResp:', resp);
+        this.user = resp.data;
+      });
   }
 
 }
