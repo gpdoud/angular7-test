@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from './user.class';
 import { JsonResp } from '../jsonresp.class';
 
-const url = "http://localhost:5000/users/";
+const url = 'http://localhost:5000/users/';
 
 @Injectable({
   providedIn: 'root'
