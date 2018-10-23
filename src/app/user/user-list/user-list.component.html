@@ -16,18 +16,20 @@
         <td>Action</td>
       </tr>
     </thead>
-    <tr *ngFor="let user of users">
-      <td>{{user.Id}}</td>
-      <td>{{user.FirstName}} {{user.LastName}}</td>
-      <td>{{user.UserName}}</td>
-      <td>{{user.Phone}}</td>
-      <td>{{user.Email}}</td>
-      <td>{{user.IsReviewer | boolDisplay }}</td>
-      <td>{{user.IsAdmin | boolDisplay }}</td>
-      <td>
-        <span><a routerLink='/users/detail/{{user.Id}}'>View</a> | </span>
-        <span><a routerLink='/users/edit/{{user.Id}}'>Edit</a></span>
-      </td>
-    </tr>
+    <tbody *ngIf='users'>
+      <tr *ngFor="let user of users | sort ">
+        <td>{{user.Id}}</td>
+        <td>{{user.FirstName}} {{user.LastName}}</td>
+        <td>{{user.UserName}}</td>
+        <td>{{user.Phone}}</td>
+        <td>{{user.Email}}</td>
+        <td>{{user.IsReviewer | boolDisplay }}</td>
+        <td>{{user.IsAdmin | boolDisplay }}</td>
+        <td>
+          <span><a routerLink='/users/detail/{{user.Id}}'>View</a> | </span>
+          <span><a routerLink='/users/edit/{{user.Id}}'>Edit</a></span>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>

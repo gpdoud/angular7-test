@@ -6,12 +6,14 @@ import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UserCreateComponent } from './user/user-create/user-create.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 
+import { NoMaintGuard } from './no-maint.guard';
+
 const routes: Routes = [
   { path: '', redirectTo: '/users/list', pathMatch: 'full' },
   { path: 'users/list', component: UserListComponent },
   { path: 'users/detail/:id', component: UserDetailComponent },
-  { path: 'users/create', component: UserCreateComponent },
-  { path: 'users/edit/:id', component: UserEditComponent },
+  { path: 'users/create', component: UserCreateComponent, canActivate: [NoMaintGuard] },
+  { path: 'users/edit/:id', component: UserEditComponent, canActivate: [NoMaintGuard] },
   { path: '**', component: UserListComponent }
 ];
 
